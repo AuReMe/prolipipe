@@ -1,0 +1,5 @@
+# run: conda env create --file environment.yml
+name: prolipipe-env
+dependencies:
+- python>=3.8
+- quarto>=1.7.30
