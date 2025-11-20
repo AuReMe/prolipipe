@@ -35,14 +35,16 @@ These python packages are needed :
 
 Prolipipe also needs `Quarto <https://quarto.org/>`__ to generate the interactive report (version > 1.7). 
 
-pip
-~~~
+conda
+~~~~
 
-If you have installed all the dependencies listed here and on MeReco's page, you can just install prolipipe with:
+Prolipipe is available on the conda channel "fermentsdufutur" and can be installed with:
 
 .. code:: sh
 
-	pip install prolipipe
+	conda create -n prolipipe
+	conda activate prolipipe
+	conda install -c fermentsdufutur prolipipe 
 
 Usage
 -----
