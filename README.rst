@@ -21,31 +21,41 @@ Installation
 Dependencies
 ~~~~~~~~~~~~
 
-Prolipipe relies on outputs from the `"MeReco" package <https://github.com/AuReMe/MeReco>`__
+Prolipipe relies on outputs from the `"AuFAMe" package <https://github.com/AuReMe/MeReco>`__
+It runs with python >= 3.8.
 
 These python packages are needed :
 
     - `pandas <https://pandas.pydata.org/>`__
     - `numpy <https://numpy.org/>`__
     - `plotly <https://plotly.com/>`__
-    - glob, glob2
-    - pathlib
-    - gzip
+    - glob2
+    - jupyter
+    - papermill
+    - `padmet <https://github.com/AuReMe/padmet>`__
 
 Prolipipe also needs `Quarto <https://quarto.org/>`__ to generate the interactive report (version > 1.7). 
 
-pip
-~~~
+conda
+~~~~
 
-If you have installed all the dependencies listed here and on MeReco's page, you can just install prolipipe with:
+Prolipipe is available on the conda channel "fermentsdufutur" and can be installed with:
 
 .. code:: sh
 
-	pip install prolipipe
+	conda create -n prolipipe
+	conda activate prolipipe
+	conda install -c fermentsdufutur prolipipe 
 
 Usage
 -----
-To run Prolipipe and generate an interactive Quarto report:
+To run Prolipipe with padmet files from AuFAMe as input and generate an interactive Quarto report:
+
+.. code:: python
+
+	prolipipe -d DIRECTORY --tax TAXFILE --pwy PWY_FOLD --is_padmet
+
+To run Prolipipe with TSV files from AuFAMe as input and generate an interactive Quarto report:
 
 .. code:: python
 
@@ -57,4 +67,9 @@ To generate TSV files without the Quarto report:
 
     prolipipe [-h] -d DIRECTORY --tax TAXFILE --pwy PWY_FOLD --no-report
 
+To regenerate Quarto report from TSV files created by Prolipipe:
+
+.. code:: python
+
+	prolipipe-report -d OUT_DIRECTORY -i INPUT_DIRECTORY
 

@@ -9,6 +9,7 @@ authors = [{name = "prolipipe", email = "gem-aureme@inria.fr"}]
 readme = "README.rst"
 description = "Prolipipe : large-scale assessment of metabolic profiles on bacteria focusing on specific pathways."
 license = "GPL-3.0-or-later"
+requires-python = ">= 3.8"
 classifiers = [
         "Programming Language :: Python :: 3 :: Only",
         "Development Status :: 4 - Beta",
@@ -19,7 +20,8 @@ dependencies = ['pandas>=2.2.3',
         'numpy>=2.2.4',
         'plotly>=6.3.1',
         'jupyter',
-        'papermill'
+        'papermill',
+        'padmet'
 ]
 	     
 [project.scripts]
