@@ -5,7 +5,7 @@
 Prolipipe : large-scale assessment of metabolic profiles on bacteria focusing on specific pathways.
 ===================================================================================================
 
-Workflow to reconstruct multiple metabolic graphs and assess capacity to synthesize specific compounds.
+Assessing capacity to synthesize or degrade specific compounds among a large set of bacterial metabolic networks and screen them accordingly.
 
 .. contents:: Table of contents
    :backlinks: top
