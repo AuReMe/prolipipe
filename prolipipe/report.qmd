@@ -189,8 +189,8 @@ def bar_presence_reactions(res_df, pwy_name, max_comp="", barplot_presence_path 
 
     to_add = f"(best completion score : {max_comp}%)" if max_comp != "" else ""
 
-    fig = px.bar(dict(Reactions=rxn2ratio.keys(), Presence=rxn2ratio.values()), x="Reactions", y="Presence", 
-    color="Presence", color_continuous_scale=px.colors.sequential.Greens, range_color=(0,100),
+    fig = px.bar(dict(Reactions=rxn2ratio.keys(), Presence=rxn2ratio.values()), x="Reactions", y="Presence %", 
+    color="Presence %", color_continuous_scale=px.colors.sequential.Greens, range_color=(0,100),
     title=f"{pwy_name}'s reactions presence percentage accross strains {to_add}")
     fig.update_yaxes(range=[0, 100])
 
