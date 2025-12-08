@@ -115,14 +115,15 @@ def draw_heatmap (df_heatmap, pwy_name, total_count, hm_filename = "") :
 
 ## imports : Scatterplots based on assembly quality
 def scatter_with_status(df_res, pwy_name, filename = "", status_colname="Status", species_colname="Species", ):
+    ## check number of status and attribute color to each
     all_status = list(set(df_res[status_colname]))
-    status2colors = {"Complete" : "blue", 
-              "Chromosome" : "blueviolet", 
-              "Scaffold" : "mediumvioletred", 
-              "Contig" : "crimson", 
-              "CIRM" : "green",
-              "nd" : "grey"
-              }
+    nb_status = len(all_status)
+    if nb_status > 10 :
+        print(f"ERROR : please note that the scatterplot representation can only hold up to 10 different status ; as here {nb_status} are found in the '{status_colname}' column of taxon file, please consider reducung this number to 10 or below.\nAborting")
+        exit(1)
+    else :
+        colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "olive", "cyan"]
+        status2colors = {all_status[i] : colors[i] for i in range (0, len(all_status))}
     traces = []
 
     ## add species headcounts 
@@ -323,7 +324,7 @@ input_dir_name = "metabo_files"
 #| warning: false
 #| output: 'asis'
 
-## initalize df and build output directory
+## initalize global summary df and build output directory
 pwys_data_df = pd.DataFrame(columns=["Pathway", "Species_candidates", "Best_completion"])
 res_dir = "results"
 os.makedirs(res_dir, exist_ok=True)
