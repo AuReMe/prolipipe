@@ -3,6 +3,7 @@ title: Prolipipe report
 format: 
     html:
         page-layout: full
+        embed-resources: true
 execute: 
   cache: false
 jupyter: python3
