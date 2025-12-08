@@ -1,11 +1,11 @@
-Species	Taxon_id	Filename
-Propionibacterium freudenreichii	754252	GCF_000091725-1
-Streptococcus thermophilus	1308	GCF_025187365-1
-Pediococcus acidilactici	1254	GCF_025188245-1
-Lactococcus lactis	1358	GCF_025188735-1
-Limosilactobacillus reuteri	1598	GCF_025189665-1
-Lactiplantibacillus pentosus	1589	GCF_025190325-1
-Lactobacillus helveticus	1587	GCF_025191245-1
-Lactobacillus delbrueckii	29397	GCF_025193465-1
-Latilactobacillus curvatus	28038	GCF_025193965-1
-Lactococcus cremoris	1359	GCF_025211855-1
+Species	Taxon_id	Filename	Strain	Status
+Propionibacterium freudenreichii	754252	GCF_000091725-1	Propionibacterium freudenreichii subsp- shermanii CIRM-BIA1_CIRM-B1AI	Complete Genome
+Streptococcus thermophilus	1308	GCF_025187365-1	Streptococcus thermophilus_CIRM-BIA 18	Contig
+Pediococcus acidilactici	1254	GCF_025188245-1	Pediococcus acidilactici_CIRM-BIA 2175	Contig
+Lactococcus lactis	1358	GCF_025188735-1	Lactococcus lactis_CIRM-BIA 852	Scaffold
+Limosilactobacillus reuteri	1598	GCF_025189665-1	Limosilactobacillus reuteri_CIRM-BIA 696	Contig
+Lactiplantibacillus pentosus	1589	GCF_025190325-1	Lactiplantibacillus pentosus_CIRM-BIA 2173	Contig
+Lactobacillus helveticus	1587	GCF_025191245-1	Lactobacillus helveticus_CIRM-BIA 106	Contig
+Lactobacillus delbrueckii	29397	GCF_025193465-1	Lactobacillus delbrueckii subsp- lactis_CIRM-BIA 231	Contig
+Latilactobacillus curvatus	28038	GCF_025193965-1	Latilactobacillus curvatus_CIRM-BIA 520	Contig
+Lactococcus cremoris	1359	GCF_025211855-1	Lactococcus cremoris_CIRM-BIA 84	Contig
