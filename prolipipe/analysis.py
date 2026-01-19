@@ -125,12 +125,13 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
         res_df = template_df.copy() 
         list_rxns = read_list(pwy_file)
         list_adj_rxns = [r for r in list_rxns]  ## not to change ; copy of list_rxns that may decrement
-        
+
         ## adding reactions 
-        for rxn in list_rxns : 
+        for rxn in list(dict.fromkeys(list_rxns)) : ## remove reaction duplicates 
             if rxn in df.columns :  ## merging for reactions found
                 to_incorporate = df[[col_filename,rxn]]
-                res_df = pd.merge(res_df, to_incorporate, on=col_filename, how="left")  
+                res_df = pd.merge(res_df, to_incorporate, on=col_filename, how="left")
+
             else :                  ## filling with 0 for all filenames if not in reactions.tsv
                 if len(res_df[expected_cols[2]]) == len(df[col_filename]):
                     res_df[rxn] = [0 for file in df[col_filename]]
