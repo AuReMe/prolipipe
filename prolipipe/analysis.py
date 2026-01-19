@@ -58,7 +58,7 @@ def add_columns(res_df, list_rxns, list_adj_rxns, col_filename="Filename") :
 
     return res_df
 
-def template_df_from_taxfile (taxfile, genomes_processed): 
+def template_df_from_taxfile (taxfile, genomes_processed, expected_cols): 
     """ 
         Furnish a template of result dataframe with the species, strain name 
         and file name as columns (data retrieved from strain and taxon files)
@@ -69,7 +69,7 @@ def template_df_from_taxfile (taxfile, genomes_processed):
             df (pd.DataFrame) : template df
     """
     ## get 5 columns from taxfile
-    expected_cols = ["Species", "Taxon_id", "Filename", "Strain", "Status"]
+    
     try:
         df = utils.rename_df(taxfile, expected_cols)
 
@@ -110,11 +110,12 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
     df = df.T.reset_index()
     df = df.rename(columns={"index" : col_filename})
     df = df[~df[col_filename].str.contains("_genes_assoc|_formula", na=False)]
-
+    print(df, "\n", df.size)
     ## get template df with status, species, strain full name and filename 
     ## adapted to the number of processed genomes
     genomes_processed = df[col_filename].to_list()
-    template_df = template_df_from_taxfile(taxfile, genomes_processed)
+    expected_cols = ["Species", "Taxon_id", "Filename", "Strain", "Status"]
+    template_df = template_df_from_taxfile(taxfile, genomes_processed, expected_cols)
 
     for pwy_file in sorted(pwy_files):
         metabo = utils.my_basename(pwy_file)
@@ -131,8 +132,18 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
                 to_incorporate = df[[col_filename,rxn]]
                 res_df = pd.merge(res_df, to_incorporate, on=col_filename, how="left")  
             else :                  ## filling with 0 for all filenames if not in reactions.tsv
-                list_adj_rxns.remove(rxn)
-                res_df[rxn] = [0 for file in df[col_filename]]
+                if len(res_df[expected_cols[2]]) == len(df[col_filename]):
+                    res_df[rxn] = [0 for file in df[col_filename]]
+                else :
+                    if len(res_df[expected_cols[2]]) > len(df[col_filename]) : 
+                        outlet_owner = "taxfile"
+                        outlet = set(res_df[expected_cols[2]]) - set(df[col_filename])
+                    else :
+                        outlet_owner = "reaction file"
+                        outlet =  set(res_df[expected_cols[2]]) - set(res_df[rxn])
+                    message = f"Something is wrong between the number of columns of your reaction file {reactions_file} \nand your taxa file {taxfile}."
+                    message += f"\nAn outlet is found in the {outlet_owner} : '{outlet}'. Please remove/add it to make files columns matching."
+                    raise ValueError(message)
 
         ## adding calculation columns
         res_df = add_columns(res_df, list_rxns, list_adj_rxns, col_filename)

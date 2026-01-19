@@ -1,3 +1,4 @@
 .gitignore
 launch_prolipipe.sh
+prolipipe.egg-info
 __pycache__

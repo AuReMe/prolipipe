@@ -120,7 +120,7 @@ def scatter_with_status(df_res, pwy_name, filename = "", status_colname="Status"
     all_status = list(set(df_res[status_colname]))
     nb_status = len(all_status)
     if nb_status > 10 :
-        print(f"ERROR : please note that the scatterplot representation can only hold up to 10 different status ; as here {nb_status} are found in the '{status_colname}' column of taxon file, please consider reducung this number to 10 or below.\nAborting")
+        print(f"ERROR : please note that the scatterplot representation can only hold up to 10 different status ; as here {nb_status} are found in the '{status_colname}' column of taxon file, please consider reducing this number to 10 or below.")
         exit(1)
     else :
         colors = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "olive", "cyan"]
