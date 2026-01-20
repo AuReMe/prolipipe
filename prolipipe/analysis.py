@@ -110,7 +110,7 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
     df = df.T.reset_index()
     df = df.rename(columns={"index" : col_filename})
     df = df[~df[col_filename].str.contains("_genes_assoc|_formula", na=False)]
-    print(df, "\n", df.size)
+
     ## get template df with status, species, strain full name and filename 
     ## adapted to the number of processed genomes
     genomes_processed = df[col_filename].to_list()
@@ -148,7 +148,7 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
 
         ## adding calculation columns
         res_df = add_columns(res_df, list_rxns, list_adj_rxns, col_filename)
-        
+
         ## concatenate reactions not found 
         rxns_not_found = rxns_not_found + show_results (res_df)
 
