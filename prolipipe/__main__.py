@@ -79,8 +79,11 @@ def map_pwys_to_GSMs(options) :
     pwy_dir = options.pwy_fold
 
     ## check file presence 
+    if os.path.isdir(input_tsv) :
+        print(f"{input_tsv} is a directory. Checking inside...")
+        input_tsv = os.path.join(input_tsv, "reactions.tsv")
     if not os.path.isfile(input_tsv) : 
-        raise ValueError(f"ERROR : no reactions.tsv file found in {input_tsv}. Aborting.")
+        raise ValueError(f"ERROR : {input_tsv} is not a file. Aborting.")
     
     ## output dir generation
     output_metabo = os.path.join(outdir, 'metabo_files')
