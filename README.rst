@@ -49,27 +49,27 @@ Prolipipe is available on the conda channel "fermentsdufutur" and can be install
 
 Usage
 -----
-To run Prolipipe with padmet files from AuFAMe as input and generate an interactive Quarto report:
+To run Prolipipe with padmet files from AuFAMe as input, generate TSV files and an interactive Quarto report:
 
 .. code:: python
 
-	prolipipe -d DIRECTORY --tax TAXFILE --pwy PWY_FOLD --is_padmet
-
-To run Prolipipe with TSV files from AuFAMe as input and generate an interactive Quarto report:
-
-.. code:: python
-
-    prolipipe [-h] -d DIRECTORY --tax TAXFILE --pwy PWY_FOLD
+	prolipipe -pad DIRECTORY --tax TAXFILE --pwy PWY_FOLD
 
 To generate TSV files without the Quarto report:
 
 .. code:: python
 
-    prolipipe [-h] -d DIRECTORY --tax TAXFILE --pwy PWY_FOLD --no-report
+    prolipipe -pad DIRECTORY --tax TAXFILE --pwy PWY_FOLD --no-report
+    
+To run Prolipipe with TSV files from AuFAMe as input and generate an interactive Quarto report:
+
+.. code:: python
+
+    prolipipe -i DIRECTORY --tax TAXFILE --pwy PWY_FOLD
 
 To regenerate Quarto report from TSV files created by Prolipipe:
 
 .. code:: python
 
-	prolipipe-report -d OUT_DIRECTORY -i INPUT_DIRECTORY
+	prolipipe-report -i DIRECTORY -d OUT_DIRECTORY 
 
