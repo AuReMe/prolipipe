@@ -133,20 +133,8 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
             if rxn in df.columns :  ## merging for reactions found
                 to_incorporate = df[[col_filename,rxn]]
                 res_df = pd.merge(res_df, to_incorporate, on=col_filename, how="left")
-
             else :                  ## filling with 0 for all filenames if not in reactions.tsv
-                if len(res_df[expected_cols[2]]) == len(df[col_filename]):
-                    res_df[rxn] = [0 for file in df[col_filename]]
-                else :
-                    if len(res_df[expected_cols[2]]) > len(df[col_filename]) : 
-                        outlet_owner = "taxfile"
-                        outlet = set(res_df[expected_cols[2]]) - set(df[col_filename])
-                    else :
-                        outlet_owner = "reaction file"
-                        outlet =  set(res_df[expected_cols[2]]) - set(res_df[rxn])
-                    message = f"Something is wrong between the number of columns of your reaction file {reactions_file} \nand your taxa file {taxfile}."
-                    message += f"\nAn outlet is found in the {outlet_owner} : '{outlet}'. Please remove/add it to make files columns matching."
-                    raise ValueError(message)
+                res_df[rxn] = [0 for file in res_df[rxn]]
 
         ## adding calculation columns
         res_df = add_columns(res_df, list_rxns, list_adj_rxns, col_filename)
