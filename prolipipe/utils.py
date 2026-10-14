@@ -46,7 +46,13 @@ def rename_df(path_to_df, expected_cols, no_rxn=False):
         Output : 
             df_to_test (pd.DataFrame) : renamed df
     """
-    df_to_test = pd.read_csv(path_to_df, sep = "\t")
+    if os.path.isfile(path_to_df) :
+        df_to_test = pd.read_csv(path_to_df, sep = "\t")
+    else :
+        raise ValueError(f"Not a proper file : {path_to_df}")
+
+    if "," in df_to_test.columns and len(df_to_test.columns) == 1 :
+        df_to_test = pd.read_csv(path_to_df, sep = ",")
 
     ## get columns to compare to expected list
     if no_rxn : 
