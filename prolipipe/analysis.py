@@ -85,7 +85,9 @@ def template_df_from_taxfile (taxfile, genomes_processed, expected_cols):
         return df[cols]
     
     except:
-        print(f"Expect those columns in taxon_file : {", ".join(expected_cols)}")
+        print(f"Expect those columns in {taxfile} : {", ".join(expected_cols)}")
+        df_to_test = pd.read_csv(taxfile, sep = "\t")
+        print(f"Current columns : {df_to_test.columns}")
         exit(1)
 
 def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = "Filename") :
@@ -134,7 +136,7 @@ def generate_res_files(reactions_file, pwy_dir, taxfile, output, col_filename = 
                 to_incorporate = df[[col_filename,rxn]]
                 res_df = pd.merge(res_df, to_incorporate, on=col_filename, how="left")
             else :                  ## filling with 0 for all filenames if not in reactions.tsv
-                res_df[rxn] = [0 for file in res_df[rxn]]
+                res_df[rxn] = [0 for file in res_df["Filename"]]
 
         ## adding calculation columns
         res_df = add_columns(res_df, list_rxns, list_adj_rxns, col_filename)
