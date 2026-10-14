@@ -2,10 +2,10 @@
 	:target: https://github.com/NoeRobert1/prolipipe-1/blob/main/LICENSE
 
 
-Prolipipe : large-scale assessment of metabolic profiles on bacteria focusing on specific pathways.
+Prolipipe : large-scale assessment of metabolic profiles focusing on specific pathways.
 ===================================================================================================
 
-Assessing capacity to synthesize or degrade specific compounds among a large set of bacterial metabolic networks and screen them accordingly.
+Assessing capacity to synthesize or degrade specific compounds among a large set of metabolic networks and screen them accordingly.
 
 .. contents:: Table of contents
    :backlinks: top
