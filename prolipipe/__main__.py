@@ -28,6 +28,7 @@ from prolipipe.__init__ import __version__
 from importlib import resources
 import os, shutil
 import argparse
+import subprocess
 
 from prolipipe import utils, analysis
 
@@ -61,7 +62,7 @@ def compare_padmet(input_dir, output_dir):
     padmet compare_padmet --padmet={input_dir} --output={output_dir}/tsv_files -v
     """
     try:
-        os.system(padmet_command)
+        subprocess.run(padmet_command)
         return f"{output_dir}/tsv_files/reactions.tsv"
     except Exception as e:
         print(f"ERROR: can't run compare_padmet with error \n{e}")
@@ -102,7 +103,7 @@ def render_quarto_report(directory, input_files):
     quarto_command = f"""
     quarto render report.qmd --output-dir quarto_report -P input_dir_name:{input_files}
     """
-    os.system(quarto_command)
+    subprocess.run(quarto_command)
     os.remove("report.qmd")
 
 # ---------------------------------------------------------------------------------------------
@@ -134,14 +135,18 @@ def main():
 
     print("\nThank you for using Prolipipe !")
 
-def report():
+def parser_report():
     parser = argparse.ArgumentParser(description="Generate Quarto report for Prolipipe outputs.")
-    
+        
     ## arguments 
     parser.add_argument("-d", "--dir", required=True, dest="directory", help="Output path for Quarto report. It needs to contain a directory with tsv files from Prolipipe.")
     parser.add_argument("-i", "--input", required=True, dest="input", help="Name of the directory containing tsv files from Prolipipe.")
+        
+    return parser.parse_args()
+
+def report():
     
-    options = parser()
+    options = parser_report()
 
     render_quarto_report(options.directory, options.input)
 
